@@ -1,24 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+// import 'node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from './Header';
+import Footer from './Footer';
+import Body from './Body';
+import userContext from './userContext';
+import { useState } from 'react';
 
 function App() {
+  const [user,setUser] = useState({
+    name: "ganesh",
+    email: "ganesh@gmail.com"
+  })
+  // let x = 1
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+      <Header/>
+      <userContext.Provider value={{user:user,setUser:setUser} }>
+      <Body/>
+      <Footer/>
+      </userContext.Provider>
+      </>
   );
 }
 
